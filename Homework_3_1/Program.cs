@@ -12,21 +12,45 @@ namespace Homework_3_1
         {
             Console.OutputEncoding = Encoding.Unicode;// UTF8
 
+
             Console.Write("Podaj swoje imię: ");
             var name = Console.ReadLine();
             Console.WriteLine();
             Console.Write("Podaj swoje miejsce urodzenia: ");
             var city = Console.ReadLine();
             Console.WriteLine();
-            Console.Write("Podaj rok swojego urodzenia: ");
-            var birthYear = int.Parse(Console.ReadLine());
-            Console.WriteLine();
-            Console.Write("Podaj miesiąc swojego urodzenia: ");
-            var birthMonth = int.Parse(Console.ReadLine());
-            Console.WriteLine();
-            Console.Write("Podaj dzień swojego urodzenia: ");
-            var birthDay = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+
+            int birthYear, birthMonth, birthDay;
+
+            try
+            {
+                Console.Write("Podaj rok swojego urodzenia: ");
+                birthYear = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.Write("Podaj miesiąc swojego urodzenia: ");
+                birthMonth = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.Write("Podaj dzień swojego urodzenia: ");
+                birthDay = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+            }
+            catch (FormatException ex)
+            {                
+                Console.WriteLine(ex.Message);                
+                throw ex;
+            }
+
+            catch(Exception ex)
+            {
+                Console.WriteLine("Nieprawidłowy format danych.");
+                throw ex;
+            }
+
+            finally
+            {
+                Console.WriteLine();
+                Console.WriteLine("Uruchom program ponownie.");
+            }
 
             var birthDate = new DateTime(birthYear, birthMonth, birthDay);
             var presentDate = DateTime.Now;
