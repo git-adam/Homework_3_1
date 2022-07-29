@@ -22,6 +22,7 @@ namespace Homework_3_1
 
             int birthYear, birthMonth, birthDay;
 
+            var flag = false;
             try
             {
                 Console.Write("Podaj rok swojego urodzenia: ");
@@ -35,21 +36,27 @@ namespace Homework_3_1
                 Console.WriteLine();
             }
             catch (FormatException ex)
-            {                
+            {
+                flag = true;
                 Console.WriteLine(ex.Message);                
                 throw ex;
             }
 
             catch(Exception ex)
             {
+                flag = true;
                 Console.WriteLine("Nieprawidłowy format danych.");
                 throw ex;
             }
 
             finally
             {
-                Console.WriteLine();
-                Console.WriteLine("Uruchom program ponownie.");
+                if(flag)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Uruchom program ponownie.");
+                }
+
             }
 
             var birthDate = new DateTime(birthYear, birthMonth, birthDay);
